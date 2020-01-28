@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="common"
+         basedir="."
+         default="package"
+         xmlns:contrib="http://net.sf.antcontrib">
+
+    <description>
+        Simple Ant build file to package a webpack-bundled application as a WAR
+    </description>
+    
+    <property file="${basedir}/build.properties"/>
+
+    <property name="war.file" value = "${basedir}/${war.fname}"/>
+    
+    <taskdef uri="http://net.sf.antcontrib"  resource="net/sf/antcontrib/antlib.xml"  classpath="ant-contrib-1.0b3.jar"/>
+
+    <target name="package" description="prepare WAR">
+      <war destfile="${war.file}" basedir="dist"
+           webxml="web.xml" 
+           compress="true" update="false">
+      </war>
+    </target>
+
+
+    <target name="deploy" depends="package" description="deploy to local configured web server">
+      <echo message="copying ${war.file} to ${deploy.dir}/"/>
+      <copy file="${war.file}" tofile="${deploy.dir}/${war.fname}"/>
+    </target>
+
+    <target name="undeploy" description="delete from local configured web server">
+      <delete file="${deploy.dir}/${war.fname}"/>
+    </target>
+</project>
