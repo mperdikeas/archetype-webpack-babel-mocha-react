@@ -4,7 +4,7 @@
 	      http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
 	      version="2.4">
 
-  <display-name>create-react-app-servlet</display-name>
+  <display-name>Demo React-based SPA application bundled with webpack</display-name>
 
   <!-- I'm not sure what's the use case for that but maybe it'll come in handy -->
   <error-page>
